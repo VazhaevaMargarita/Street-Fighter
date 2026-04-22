@@ -4,34 +4,21 @@ using UnityEngine;
 public class PlayerAtack : MonoBehaviour
 {
     private Animator _animator;
-    [SerializeField] private float damage = 5f;
-    private float _health = 100f;
+    public int _health = 100;
+    [SerializeField] private LayerMask _enemy;
+    [SerializeField] private SpriteRenderer _sr;
 
-    [SerializeField] private  EnemyMovement _enemyMovement;
-    
-
+    public event Action HitPlayerEvent;
     void Start()
     {
+        
         _animator = GetComponent<Animator>();
-        if (!_enemyMovement)
-        {
-            Debug.Log("asdasdfg");
-        }
-    }
-
-    private void OnEnable()
-    {
-        _enemyMovement.HitPlayerEvent += GetGamage;
     }
 
 
 
-    private void GetGamage()
-    {
-        Debug.Log("GetGamage");
-        _health -= damage;
-        Debug.Log(_health);
-    }
+
+
 
     void Update()
     {
@@ -45,9 +32,22 @@ public class PlayerAtack : MonoBehaviour
             _animator.SetBool("Hit", false);
         }
     }
-    
-    private void OnDisable()
+
+    public void HitPlayer()
     {
-        _enemyMovement.HitPlayerEvent -= GetGamage;
+        bool Hit;
+        if (_sr.flipX == false)
+        {
+            Hit = Physics2D.Raycast(transform.position, Vector2.right,1.5f,_enemy);
+        }
+        else
+        {
+            Hit = Physics2D.Raycast(transform.position, Vector2.left,1.5f,_enemy);
+        }
+        
+        if (Hit)
+        {
+            HitPlayerEvent?.Invoke();
+        }
     }
 }

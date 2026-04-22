@@ -875,6 +875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  _enemyMovement: {fileID: 13214391}
 --- !u!4 &1058331659
 Transform:
   m_ObjectHideFlags: 0

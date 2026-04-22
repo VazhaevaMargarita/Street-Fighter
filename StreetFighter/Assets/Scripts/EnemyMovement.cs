@@ -13,7 +13,7 @@ public class EnemyMovement : MonoBehaviour
     private bool _bIsRight = true;
     [SerializeField] SpriteRenderer _sre;
     private PlayerAtack _playerAtack;
-
+    
 
     
     
