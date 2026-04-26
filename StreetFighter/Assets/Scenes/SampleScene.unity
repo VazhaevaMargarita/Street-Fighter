@@ -319,7 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 100
   _playerMovement: {fileID: 1058331657}
-  _sre: {fileID: 0}
+  _sre: {fileID: 13214389}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

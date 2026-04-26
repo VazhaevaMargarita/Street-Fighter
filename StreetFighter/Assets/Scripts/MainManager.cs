@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MainManager : MonoBehaviour
@@ -24,11 +25,13 @@ public class MainManager : MonoBehaviour
         
     }
     
+
     private void EnemyHealth()
     {
         _playerAtack._health = _health.CalcHealth(_setitngs._damage,_playerAtack._health);
         Debug.Log("PlayerHp="+_playerAtack._health);
-        _playerAnimator.SetBool("Hurt", true);
+        _playerAnimator.SetBool("Hurt", true); 
+        
         
     }
 

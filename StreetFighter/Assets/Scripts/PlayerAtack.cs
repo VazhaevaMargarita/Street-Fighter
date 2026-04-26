@@ -50,4 +50,5 @@ public class PlayerAtack : MonoBehaviour
             HitPlayerEvent?.Invoke();
         }
     }
+    
 }
