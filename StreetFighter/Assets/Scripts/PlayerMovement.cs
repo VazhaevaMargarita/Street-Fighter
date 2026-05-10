@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
         [SerializeField] private SpriteRenderer _sr;
         private bool _bIsFacingRight = true;
 
-        private bool _canMove = true;
+
     
         
         void Awake()
@@ -25,16 +25,8 @@ public class PlayerMovement : MonoBehaviour
             _movement.x = Input.GetAxisRaw("Horizontal");
             _movement.y = Input.GetAxisRaw("Vertical");
             _animator.SetFloat("Move", Mathf.Abs(_movement.x)+Mathf.Abs(_movement.y));
-            if (_canMove)
-            {
-                _rb.linearVelocity = new Vector2(_movement.x * speed, _movement.y * speed);
-            }
-            else
-            {
-                _rb.linearVelocity = Vector2.zero;
-            }
+            _rb.linearVelocity = new Vector2(_movement.x * speed, _movement.y * speed);
             
-
             if (_movement.x > 0f && !_bIsFacingRight)
             {
                 Flip();
@@ -54,11 +46,8 @@ public class PlayerMovement : MonoBehaviour
         }
         public void StopAnim()
         {
-            _canMove = true;
+
             _animator.SetBool("Hurt", false); 
         }
-        public void StopMove()
-        {
-            _canMove = false;
-        }
+ 
 }

@@ -13,31 +13,32 @@ public class MainManager : MonoBehaviour
     [SerializeField] private Animator _enemyAnimator;
     private void OnEnable()
     {
-        _playerAtack.HitPlayerEvent += PlayerHealth;
-        _enemyController.HitEnemyEvent += EnemyHealth;
+        _playerAtack.HitPlayerEvent += PlayerAtack;
+        _enemyController.HitEnemyEvent += EnemyAtack;
     }
 
-    private void PlayerHealth()
+    private void PlayerAtack()
     {
         _enemyController._health = _health.CalcHealth(_setitngs._damage,_enemyController._health);
         Debug.Log("EnemyHp="+_enemyController._health);
-        _enemyAnimator.SetBool("Hurt", true); 
+        _enemyAnimator.SetBool("Hurt", true);
+        _ui.SetHealthEn(_enemyController._health,100f);
         
     }
     
 
-    private void EnemyHealth()
+    private void EnemyAtack()
     {
         _playerAtack._health = _health.CalcHealth(_setitngs._damage,_playerAtack._health);
         Debug.Log("PlayerHp="+_playerAtack._health);
         _playerAnimator.SetBool("Hurt", true); 
-        
+        _ui.SetHealthPl(_playerAtack._health,100f);
         
     }
 
     private void OnDisable()
     {
-        _playerAtack.HitPlayerEvent -= PlayerHealth;
-        _enemyController.HitEnemyEvent -= EnemyHealth;
+        _playerAtack.HitPlayerEvent -= PlayerAtack;
+        _enemyController.HitEnemyEvent -= EnemyAtack;
     }
 }
