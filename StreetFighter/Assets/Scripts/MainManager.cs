@@ -5,18 +5,28 @@ public class MainManager : MonoBehaviour
 {
     [SerializeField] private Health _health;
     [SerializeField] private Setitngs _setitngs;
-    [SerializeField] private UI _ui;
-    [SerializeField] private EnemyController _enemyController ;
-    
+    [SerializeField] private UIManager _ui;
+    private EnemyController _enemyController ;
+    [SerializeField] private  PlayerMovement _pplayerMovement;
     [SerializeField] private  PlayerAtack _playerAtack;
     [SerializeField] private Animator _playerAnimator;
-    [SerializeField] private Animator _enemyAnimator;
+    private Animator _enemyAnimator;
+    [SerializeField]private GameObject prefab;
+
+    private void Start()
+    {
+        _enemyController = prefab.GetComponent<EnemyController>();
+        _enemyAnimator = prefab.GetComponent<Animator>();
+        _enemyController._playerMovement = _pplayerMovement;
+    }
+
     private void OnEnable()
     {
         _playerAtack.HitPlayerEvent += PlayerAtack;
         _enemyController.HitEnemyEvent += EnemyAtack;
     }
 
+    
     private void PlayerAtack()
     {
         _enemyController._health = _health.CalcHealth(_setitngs._damage,_enemyController._health);

@@ -3,14 +3,15 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class UI : MonoBehaviour
+public class UIManager : MonoBehaviour
 { 
-
+    [SerializeField]private GameObject prefab;
     [SerializeField] private Image fillEn;
     [SerializeField] private Image fillPl;
 
     private void Awake()
     {
+        fillEn = prefab.GetComponent<ImageFillEnemy>();
         fillEn.color = Color.green;
         fillEn.fillAmount = 1f;
         fillPl.color = Color.green;
