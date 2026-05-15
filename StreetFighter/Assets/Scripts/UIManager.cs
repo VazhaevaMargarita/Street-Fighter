@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 { 
     [SerializeField]private GameObject prefab;
-    [SerializeField] private Image fillEn;
+    
     [SerializeField] private Image fillPl;
 
     private void Awake()
     {
-        fillEn = prefab.GetComponent<ImageFillEnemy>();
-        fillEn.color = Color.green;
-        fillEn.fillAmount = 1f;
+        
+
         fillPl.color = Color.green;
         fillPl.fillAmount = 1f;
     }
@@ -24,12 +23,5 @@ public class UIManager : MonoBehaviour
 
         fillPl.fillAmount = ratio;
         fillPl.color = Color.Lerp(Color.red, Color.green, ratio);
-    }
-    public void SetHealthEn(float current, float max)
-    {
-        float ratio = current / max;
-
-        fillEn.fillAmount = ratio;
-        fillEn.color = Color.Lerp(Color.red, Color.green, ratio);
     }
 }

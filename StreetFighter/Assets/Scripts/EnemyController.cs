@@ -4,9 +4,10 @@ using UnityEngine;
 using static UnityEngine.Vector2;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
-
+using UnityEngine.UI;
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] private Image fillEn;
     public int _health = 100;
     public PlayerMovement _playerMovement;
     [SerializeField] SpriteRenderer _sre;
@@ -21,6 +22,8 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        fillEn.color = Color.green;
+        fillEn.fillAmount = 1f;
         _speed = Random.Range(3f, 6f);
         _animatore = GetComponent<Animator>();
     }
@@ -104,6 +107,15 @@ public class EnemyController : MonoBehaviour
             _animatore.SetBool("Hurt", true); 
             Destroy(_enemy,0.5f);
         }
+    }
+    
+    
+    public void SetHealthEn(float current, float max)
+    {
+        float ratio = current / max;
+
+        fillEn.fillAmount = ratio;
+        fillEn.color = Color.Lerp(Color.red, Color.green, ratio);
     }
 
 
