@@ -1936,10 +1936,10 @@ MonoBehaviour:
   _health: {fileID: 761816812}
   _setitngs: {fileID: 761816814}
   _ui: {fileID: 761816815}
-  _enemyController: {fileID: 0}
+  _pplayerMovement: {fileID: 1058331657}
   _playerAtack: {fileID: 1058331658}
   _playerAnimator: {fileID: 1058331656}
-  _enemyAnimator: {fileID: 0}
+  prefab: {fileID: 9032473922619766150, guid: 279ddcc6f3bdbde4cb45a68a5da4491b, type: 3}
 --- !u!114 &761816814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1965,7 +1965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c964e2bb84a803745a66cfe28b19147c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillEn: {fileID: 0}
+  prefab: {fileID: 0}
   fillPl: {fileID: 869223804}
 --- !u!114 &761816816
 MonoBehaviour:

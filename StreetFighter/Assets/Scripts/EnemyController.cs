@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     public int _health = 100;
     public PlayerMovement _playerMovement;
     [SerializeField] SpriteRenderer _sre;
-    private Animator _animatore;
+    [SerializeField] private Animator _animatore;
     public event Action HitEnemyEvent;
     private Vector2 _direction;
     private bool _bIsFacingRight = true;
@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _stopDistance = 1f;
     [SerializeField] private GameObject _enemy;
 
-    private void Start()
+    private void Awake()
     {
         fillEn.color = Color.green;
         fillEn.fillAmount = 1f;
@@ -109,7 +109,10 @@ public class EnemyController : MonoBehaviour
         }
     }
     
-    
+    public void StartAnim()
+    {
+        _animatore.SetBool("Hurt", true); 
+    }
     public void SetHealthEn(float current, float max)
     {
         float ratio = current / max;

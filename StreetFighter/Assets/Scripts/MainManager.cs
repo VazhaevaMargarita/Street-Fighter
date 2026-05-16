@@ -31,9 +31,8 @@ public class MainManager : MonoBehaviour
     {
         _enemyController._health = _health.CalcHealth(_setitngs._damage,_enemyController._health);
         Debug.Log("EnemyHp="+_enemyController._health);
-        _enemyAnimator.SetBool("Hurt", true);
+        _enemyController.StartAnim();
         _enemyController.SetHealthEn(_enemyController._health,100f);
-        
     }
     
 

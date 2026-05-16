@@ -353,6 +353,7 @@ MonoBehaviour:
   _health: 100
   _playerMovement: {fileID: 0}
   _sre: {fileID: 7456423486940595176}
+  _animatore: {fileID: 6798418798680018280}
   _speed: 5
   _hitDistance: 10
   _stopDistance: 1
