@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
-    [SerializeField] private Health _health;
+    /*[SerializeField] private Health _health;
     [SerializeField] private Setitngs _setitngs;
     [SerializeField] private UIManager _ui;
     private EnemyController _enemyController ;
@@ -13,6 +13,7 @@ public class MainManager : MonoBehaviour
     private Animator _enemyAnimator;
     [SerializeField]private GameObject prefab;
 
+    public event Action OnHealthChanged;
     private void Awake()
     {
         _enemyController = prefab.GetComponent<EnemyController>();
@@ -29,19 +30,21 @@ public class MainManager : MonoBehaviour
     
     private void PlayerAtack()
     {
+        /*Debug.Log("PlAtack");
+        Debug.Log(_enemyController.name);
         _enemyController._health = _health.CalcHealth(_setitngs._damage,_enemyController._health);
         Debug.Log("EnemyHp="+_enemyController._health);
         _enemyController.StartAnim();
-        _enemyController.SetHealthEn(_enemyController._health,100f);
+        _enemyController.SetHealthEn(_enemyController._health,100f);#1#
     }
     
 
     private void EnemyAtack()
     {
-        _playerAtack._health = _health.CalcHealth(_setitngs._damage,_playerAtack._health);
+        /*_playerAtack._health = _health.CalcHealth(_setitngs._damage,_playerAtack._health);
         Debug.Log("PlayerHp="+_playerAtack._health);
         _playerAnimator.SetBool("Hurt", true); 
-        _ui.SetHealthPl(_playerAtack._health,100f);
+        _ui.SetHealthPl(_playerAtack._health,100f);#1#
         
     }
 
@@ -49,5 +52,5 @@ public class MainManager : MonoBehaviour
     {
         _playerAtack.HitPlayerEvent -= PlayerAtack;
         _enemyController.HitEnemyEvent -= EnemyAtack;
-    }
+    }*/
 }

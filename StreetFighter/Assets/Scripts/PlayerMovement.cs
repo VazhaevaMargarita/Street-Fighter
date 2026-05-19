@@ -1,53 +1,35 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    
     [SerializeField] private float speed = 5f;
-        private Rigidbody2D _rb;
-        private Animator _animator;
-        private Vector2 _movement;
-        [SerializeField] private SpriteRenderer _sr;
-        private bool _bIsFacingRight = true;
 
+    private Rigidbody2D rb;
+    private Animator animator;
+    private CharacterFlip flip;
 
-    
-        
-        void Awake()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-            _animator = GetComponent<Animator>();
-        }
-    
-    
-        void Update()
-        {
-            _movement.x = Input.GetAxisRaw("Horizontal");
-            _movement.y = Input.GetAxisRaw("Vertical");
-            _animator.SetFloat("Move", Mathf.Abs(_movement.x)+Mathf.Abs(_movement.y));
-            _rb.linearVelocity = new Vector2(_movement.x * speed, _movement.y * speed);
-            
-            if (_movement.x > 0f && !_bIsFacingRight)
-            {
-                Flip();
-            }
-            else if (_movement.x < 0f && _bIsFacingRight)
-            { 
-                Flip();
-            }
-            
-    
-        }
-        
-        private void Flip()
-        {
-            _bIsFacingRight = !_bIsFacingRight;
-            _sr.flipX = !_bIsFacingRight;
-        }
-        public void StopAnim()
-        {
+    private Vector2 movement;
 
-            _animator.SetBool("Hurt", false); 
-        }
- 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        flip = GetComponent<CharacterFlip>();
+    }
+
+    private void Update()
+    {
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Move", movement.sqrMagnitude);
+
+        flip.Flip(movement.x);
+    }
+
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = movement.normalized * speed;
+    }
 }

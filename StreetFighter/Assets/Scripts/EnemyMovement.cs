@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+/*
 [SerializeField] private float speed = 6f;
     [SerializeField] float raycastDistance = 5f;
     [SerializeField] float raycastHitDistance = 0.5f;
@@ -127,5 +128,6 @@ public class EnemyMovement : MonoBehaviour
             HitPlayerEvent?.Invoke();
         }
     }
+    */
     
 }

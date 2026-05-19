@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerAtack : MonoBehaviour
+public class _PlayerAtack : MonoBehaviour
 {
     private Animator _animator;
     public int _health = 100;

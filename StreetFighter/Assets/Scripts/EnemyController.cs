@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.Vector2;
@@ -22,10 +23,18 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        _health = 100;
         fillEn.color = Color.green;
         fillEn.fillAmount = 1f;
         _speed = Random.Range(3f, 6f);
         _animatore = GetComponent<Animator>();
+        if (!_animatore)
+        {
+            Debug.LogWarning("No Animator found");
+        }
+        else{
+            Debug.LogWarning(" Animator found");
+                    }
     }
 
     private void FixedUpdate()
@@ -40,20 +49,22 @@ public class EnemyController : MonoBehaviour
             float distance = Vector3.Distance(enemyPos, playerPos);
             if (distance <= _stopDistance)
             {
-                _animatore.SetFloat("Move", 0f); 
-                _animatore.SetBool("Hit", true); 
-                return;
+                Invoke("PerformAttack",2f);
+                
             }
             
             if (Mathf.Abs(playerPos.y - enemyPos.y)>0.05f)
             {
+                Debug.Log(Mathf.Abs(playerPos.y - enemyPos.y));
                 enemyPos.y = Mathf.MoveTowards(enemyPos.y, playerPos.y, _speed*Time.deltaTime);
             }
             else
             {
+                _animatore.SetFloat("Move", 1f); 
+                _animatore.SetBool("Hit", false);
                 // Потом идём к игроку
                 enemyPos.x = Mathf.MoveTowards(enemyPos.x, playerPos.x, _speed*Time.deltaTime);
-                if (playerPos.x - enemyPos.x > 0&&_bIsFacingRight)
+                if (playerPos.x - enemyPos.x > 0 && _bIsFacingRight)
                 {
                     Flip();
                 }
@@ -99,19 +110,25 @@ public class EnemyController : MonoBehaviour
         
     }
 
+    private void PerformAttack()
+    {
+        _animatore.SetFloat("Move", 0f); 
+        _animatore.SetBool("Hit", true); 
+    }
+
     private void Update()
     {
-        if (_health <= 0)
+        /*if (_health <= 0)
         {
-            _animatore.SetFloat("Move", 0f); 
             _animatore.SetBool("Hurt", true); 
             Destroy(_enemy,0.5f);
-        }
+        }*/
     }
     
     public void StartAnim()
     {
-        _animatore.SetBool("Hurt", true); 
+        Debug.Log("Anim"+ _animatore.name);
+        // _animatore.SetBool("Hurt", true); 
     }
     public void SetHealthEn(float current, float max)
     {
